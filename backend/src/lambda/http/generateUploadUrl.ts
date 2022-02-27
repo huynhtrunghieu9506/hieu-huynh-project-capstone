@@ -7,7 +7,7 @@ import { cors, httpErrorHandler } from 'middy/middlewares'
 import { getUserId } from '../utils'
 
 import * as uuid from 'uuid'
-import { generateSignedUrl, updateUrl } from '../../helpers/todos'
+import { generateSignedUrl, updateUrl } from '../../businessService/todosService'
 import { createLogger } from '../../utils/logger'
 
 const logger = createLogger('UploadUrl')
