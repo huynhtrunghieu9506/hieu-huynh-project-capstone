@@ -5,7 +5,7 @@ import * as middy from 'middy'
 import { cors, httpErrorHandler } from 'middy/middlewares'
 
 import { getUserId } from '../utils'
-import { deleteTodo } from '../../helpers/todos'
+import { deleteTodo } from '../../businessService/todosService'
 import { createLogger } from '../../utils/logger'
 
 const logger = createLogger('Delete Todo')
