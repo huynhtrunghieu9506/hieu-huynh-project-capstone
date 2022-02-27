@@ -7,12 +7,18 @@ export class AttachmentUtils {
     constructor(
         private readonly s3 = new XAWS.S3({ signatureVersion: 'v4'}),
         private readonly bucketName = process.env.ATTACHMENT_S3_BUCKET,
+        private readonly thumbnailBucket = process.env.THUMBNAILS_S3_BUCKET,
         private readonly urlExpiration = process.env.SIGNED_URL_EXPIRATION
     ) {
     }
 
     async getUrl(attachmentId: string): Promise<string> {
         const url = `https://${this.bucketName}.s3.amazonaws.com/${attachmentId}`
+        return url
+    }
+
+    async getThumbnailUrl(attachmentId: string): Promise<string> {
+        const url = `https://${this.thumbnailBucket}.s3.amazonaws.com/${attachmentId}.jpeg`
         return url
     }
 

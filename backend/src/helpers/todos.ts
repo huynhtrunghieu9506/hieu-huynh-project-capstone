@@ -53,12 +53,13 @@ export async function deleteTodo(userId: string, todoId: string) {
 export async function updateUrl(userId: string, todoId: string, attachmentId: string) {
     logger.info(`update todo attachment ${attachmentId}`)
     const attachmentUrl = await attachmentUtils.getUrl(attachmentId)
+    const thumbnailUrl = await attachmentUtils.getThumbnailUrl(attachmentId)
     const todo = await toDoAccess.getToDo(todoId, userId)
 
     if(!todo)
         throw new Error('Todo not found')
 
-    await toDoAccess.updateUrl(todoId, userId, attachmentUrl)
+    await toDoAccess.updateUrl(todoId, userId, attachmentUrl, thumbnailUrl)
 }
 
 export async function generateSignedUrl(attachmentId: string): Promise<String> {
