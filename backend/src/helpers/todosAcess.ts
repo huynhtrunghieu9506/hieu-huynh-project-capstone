@@ -79,7 +79,7 @@ export class ToDosAccess {
             }).promise()
         }
 
-        async updateUrl(todoId: String, userId: string, url: string) {
+        async updateUrl(todoId: String, userId: string, url: string, thumbnailUrl: string) {
             logger.info(`Updating todo url ${url} for id ${todoId}`)
             await this.docClient.update({
                 TableName: this.todosTable,
@@ -87,9 +87,10 @@ export class ToDosAccess {
                     todoId: todoId,
                     userId: userId
                 },
-                UpdateExpression: 'set attachmentUrl = :url',
+                UpdateExpression: 'set attachmentUrl = :url, thumbnailUrl = :thumbnailUrl',
                 ExpressionAttributeValues: {
-                    ':url': url
+                    ':url': url,
+                    ':thumbnailUrl': thumbnailUrl
                 }
             }).promise()
         }
